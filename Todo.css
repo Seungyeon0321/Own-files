@@ -1,11 +1,92 @@
 h1 {
 text-align:center;
-color: lightblue;
+color: white;
+font-family: 'Roboto Slab', serif;;
 }
 
 .list {
+    display: flex;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
     width: 40%;
     
 }
+
+.showLists {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px;
+    animation: slice 3s ease-out;
+}
+
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    padding-left: 7px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 2px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    font-family: 'Roboto Slab', serif;
+    animation: slice 3s ease-out;
+}
+
+li:hover {
+    background-color: white;
+    transform: scale(1.01);
+}
+
+body {
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+button {font-style: italic;
+        background-color: rgb(169, 201, 234); /* Blue background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        padding: 12px 16px; /* Some padding */
+        font-size: 16px; /* Set a font size */
+        cursor: pointer; /* Mouse pointer on hover */
+        margin-left: 4px;
+        padding: 4px;
+        border-radius: 5px;
+      }
+      
+button:hover {
+        background-color: rgb(101, 130, 217);
+      }
+
+.detailBoxs {
+    display: flex;
+    right: 100px;
+    margin: 0;
+    
+}
+
+@keyframes slice {
+    from {
+        right: -200px;
+    }
+    to {
+        right: 100px;
+    }
+    
+}
+/* @media screen and (max-width:1380px) {
+    body {
+        background-size: 1500px;
+    }
+
+    h1 {
+        color: red;
+    }
+}    */

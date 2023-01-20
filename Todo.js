@@ -1,8 +1,11 @@
 'use strict'
 
+
+//////////Second Challenge/////////////////
 const todoList = document.querySelector(".todoList");
 const btnSubmit = document.querySelector(".btnSubmit");
 const showLists = document.querySelector(".showLists");
+const icone = document.querySelector(".fa-solid fa-circle-xmark");
 
 let listsInfo = [];
 
@@ -10,41 +13,56 @@ const KEY_TODOLISTS = "Todolists";
 
 function printLists (lists) {
    const li = document.createElement("li");
+   li.id = Number(lists.id);
+   const span = document.createElement("span");
+   span.innerText = lists.text;
    const btn = document.createElement("button");
-   li.innerText = lists;
-   btn.innerText = " X"
+   const icone = document.createElement("i");
+   icone.classList.add("fa-solid fa-circle-xmark");
 
-   btn.addEventListener("click", () => {
-    li.remove();
+   btn.addEventListener("click", (e) => {
+    const deletedTarget = e.target.parentElement;
+    deletedTarget.remove();
+    console.log(deletedTarget);
+    listsInfo = listsInfo.filter((item) => item.id !== parseInt(li.id));
+    savelists();
    })
 
+
    showLists.appendChild(li);
+   li.appendChild(span);
    li.appendChild(btn);
+   btn.appendChild(icone);
 }
 
 
 
 btnSubmit.addEventListener('click',(event) => {
     event.preventDefault();
-    let lists = todoList.value;
+    let todoValue = todoList.value;
     todoList.value = "";
-    listsInfo.push(lists);
-    printLists(lists);
-
+    const NewListsOb = {
+        text: todoValue,
+        id: Date.now(),
+    }
+    listsInfo.push(NewListsOb);
+    printLists(NewListsOb);
+    
     savelists();
-    // parsedLists();
-});
+    }
+);
 
 function savelists () {
     localStorage.setItem(KEY_TODOLISTS, JSON.stringify(listsInfo))
 }
 
-// const savedlists = localStorage.getItem(KEY_TODOLISTS);
+const savedlists = localStorage.getItem(KEY_TODOLISTS);
 
-// function parsedLists () {
-//     const parsedItems = JSON.parse(savedlists);
-//     listsInfo = parsedItems;
-// }
+if (savedlists !== null) {
+    const parsedItems = JSON.parse(savedlists);
+    parsedItems.forEach(printLists);
+    listsInfo = parsedItems;
+}
 
 ////////////First Challenge
 /*
